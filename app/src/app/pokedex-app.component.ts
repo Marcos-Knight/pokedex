@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'pokedex',
+  selector: 'app-root',
   templateUrl: './pokedex-app.component.html',
-  styleUrl: './pokedex-app.component.scss'
+  styleUrls: ['./pokedex-app.component.scss'],
 })
 export class PokedexAppComponent {}

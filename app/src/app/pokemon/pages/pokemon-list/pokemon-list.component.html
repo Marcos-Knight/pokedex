@@ -1,0 +1,28 @@
+<h1>Pokédex</h1>
+
+<input
+  type="text"
+  placeholder="Buscar Pokémon"
+  [(ngModel)]="searchTerm"
+  (keyup.enter)="onSearch()"
+/>
+
+<button (click)="onSearch()">Buscar</button>
+<button *ngIf="searchTerm" (click)="clearSearch()">Clear</button>
+
+<div *ngIf="loading">Carregando Pokédex...</div>
+
+
+<ul *ngIf="!loading && pokemons.length > 0">
+  <li *ngFor="let pokemon of pokemons" (click)="goToDetails(pokemon)">
+    <img [src]="pokemon.image" [alt]="pokemon.name" />
+    <span>{{ pokemon.name | titlecase }}</span>
+  </li>
+</ul>
+
+<div *ngIf="!loading && pokemons.length === 0 && !searching">
+  Nenhum Pokémon encontrado
+</div>
+
+<button *ngIf="!loadingMore && !loading" (click)="loadPokemons()">Load more</button>
+<div *ngIf="loadingMore">Carregando mais...</div>

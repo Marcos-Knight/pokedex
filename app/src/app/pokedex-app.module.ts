@@ -1,18 +1,22 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
-
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { routes } from './pokedex-app.routes';
 import { PokedexAppComponent } from "./pokedex-app.component";
 import { PokemonService } from "./pokemon/pokemon.service";
+import { PokemonModule } from "./pokemon/pokemon.module";
 
 @NgModule({
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-  ],
-  providers: [
-    PokemonService,
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
+    PokemonModule
   ],
   declarations: [
     PokedexAppComponent,

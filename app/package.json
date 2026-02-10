@@ -27,6 +27,8 @@
     "@angular/platform-browser": "^18.0.1",
     "@angular/platform-browser-dynamic": "^18.0.1",
     "@angular/router": "^18.0.1",
+    "@nestjs/axios": "^4.0.1",
+    "axios": "^1.13.5",
     "rxjs": "^7.8.1",
     "tslib": "^2.6.3",
     "zone.js": "~0.14.6"
