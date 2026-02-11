@@ -1,6 +1,7 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { HttpService } from "@nestjs/axios";
 import { firstValueFrom } from "rxjs";
+import { PokemonDetailsDto } from "./dto/pokemon-details.dto";
 
 
 @Injectable()
@@ -33,7 +34,7 @@ export class PokemonService {
   }
 
 
-  async findByIdOrName(idOrName: string) {
+  async findByIdOrName(idOrName: string): Promise<PokemonDetailsDto> {
   try {
     const response = await firstValueFrom(
       this.http.get(`${this.baseUrl}/pokemon/${idOrName.toLowerCase()}`)
@@ -49,8 +50,8 @@ export class PokemonService {
         data.sprites.front_default,
       types: data.types.map(t => t.type.name),
 
-      height: data.height,
-      weight: data.weight,
+      height: data.height / 10, // metros
+      weight: data.weight / 10, // kg
 
       abilities: data.abilities.map(a => a.ability.name),
 
@@ -60,8 +61,8 @@ export class PokemonService {
       })),
     };
   } catch {
-    return null;
-  }
+      throw new NotFoundException('Pokemon not Found');
+    }
 }
 
 
@@ -85,7 +86,7 @@ export class PokemonService {
         types: data.types.map(t => t.type.name),
       };
     } catch (error) {
-      return null;
+      throw new NotFoundException('Pokemon not Found');
     }
   }
 

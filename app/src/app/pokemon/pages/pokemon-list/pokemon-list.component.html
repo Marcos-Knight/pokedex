@@ -1,11 +1,11 @@
 <div class="searchBar">
-  <input type="text" placeholder="Buscar Pokémon" [(ngModel)]="searchTerm" (keyup.enter)="onSearch()" />
+  <input type="text" placeholder="Search Pokémon" [(ngModel)]="searchTerm" (keyup.enter)="onSearch()" />
 
-  <button (click)="onSearch()">Buscar</button>
+  <button (click)="onSearch()">Search</button>
   <button *ngIf="searchTerm" (click)="clearSearch()">Clear</button>
 </div>
 
-<div class="loading" *ngIf="loading">Carregando Pokédex...</div>
+<div class="loading" *ngIf="loading">Loading Pokédex...</div>
 
 
 <div class="pokemon-grid" *ngIf="!loading && pokemons.length > 0">
@@ -22,4 +22,4 @@
 </div>
 
 <button *ngIf="!loadingMore && !loading && !empty" (click)="loadPokemons()">Load more</button>
-<div class="loading" *ngIf="loadingMore">Carregando mais...</div>
+<div class="loading" *ngIf="loadingMore">Loading More...</div>

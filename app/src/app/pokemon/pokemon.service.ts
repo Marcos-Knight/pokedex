@@ -35,8 +35,8 @@ export class PokemonService {
         name: data.name,
         image: data.image,
 
-        height: data.height / 10, // metros
-        weight: data.weight / 10, // kg
+        height: data.height ,
+        weight: data.weight ,
 
         types: data.types,
         abilities: data.abilities,
