@@ -1,67 +1,40 @@
-<button class="back-button" (click)="goBack()">← Voltar</button>
+<button class="back-button" (click)="goBack()">← Back</button>
 
-<div *ngIf="pokemon; else loading" class="pokemon-detail">
+<div *ngIf="pokemon; else loading" class="detail-container">
 
-  <header class="header">
-    <h2>{{ pokemon.name | titlecase }}</h2>
-  </header>
-
-  <div class="content">
-
-    <div class="image-wrapper">
-      <img
-        [src]="pokemon.image"
-        [alt]="pokemon.name"
-        loading="lazy"
-      />
-    </div>
-
-    <div class="info">
-      <p><strong>Altura:</strong> {{ pokemon.height }} m</p>
-      <p><strong>Peso:</strong> {{ pokemon.weight }} kg</p>
-
-      <div class="types">
-        <strong>Tipos:</strong>
-        <span
-          class="type"
-          *ngFor="let type of pokemon.types"
-        >
-          {{ type }}
-        </span>
-      </div>
-
-      <div class="abilities">
-        <strong>Habilidades:</strong>
-        <span *ngFor="let ability of pokemon.abilities; let last = last">
-          {{ ability }}<span *ngIf="!last">, </span>
-        </span>
-      </div>
+  <div class="header">
+    <img [src]="pokemon.image" [alt]="pokemon.name" />
+    <div>
+      <h2>{{ pokemon.name | titlecase }}</h2>
+      <p class="id">#{{ pokemon.id }}</p>
     </div>
   </div>
 
-  <section class="stats">
-    <h3>Status Base</h3>
+  <div class="info-section">
+    <p><strong>Height:</strong> {{ pokemon.height }} m</p>
+    <p><strong>Weight:</strong> {{ pokemon.weight }} kg</p>
 
-    <div
-      class="stat"
-      *ngFor="let stat of pokemon.stats"
-    >
-      <span class="stat-name">
-        {{ stat.name | titlecase }}
+    <p><strong>Types:</strong>
+      <span class="type" *ngFor="let type of pokemon.types">
+        {{ type }}
       </span>
+    </p>
+  </div>
 
-      <span class="stat-value">
-        {{ stat.value }}
-      </span>
+  <div class="stats-section">
+    <h3>Stats</h3>
 
-      <div class="stat-bar">
-        <div
-          class="stat-fill"
-          [style.width.%]="stat.value / 2"
+    <div *ngFor="let stat of pokemon.stats" class="stat">
+      <span>{{ stat.name }}</span>
+      <div class="bar">
+        <div 
+          class="fill" 
+          [style.width.%]="stat.value"
         ></div>
       </div>
+      <span>{{ stat.value }}</span>
     </div>
-  </section>
+  </div>
 
   <section class="cry" *ngIf="pokemon.cry">
     <h3>Som do Pokémon</h3>
@@ -74,5 +47,5 @@
 </div>
 
 <ng-template #loading>
-  <p>Carregando Pokémon...</p>
+  <p>Loading Pokémon...</p>
 </ng-template>

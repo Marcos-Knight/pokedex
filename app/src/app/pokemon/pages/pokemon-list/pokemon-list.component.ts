@@ -12,6 +12,7 @@ import { finalize } from 'rxjs';
 })
 export class PokemonListComponent implements OnInit {
     pokemons: PokemonListItem[] = [];
+    errorMessage: string | null = null;
 
     limit = 20;
     offset = 0;
@@ -19,6 +20,17 @@ export class PokemonListComponent implements OnInit {
     loading = false;
     loadingMore = false;
     searching = false;
+    empty = true;
+
+    private scrollToBottom(): void {
+        setTimeout(() => {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        }, 100);
+    }
+
 
     searchTerm = '';
 
@@ -48,13 +60,18 @@ export class PokemonListComponent implements OnInit {
 
                     this.pokemons = [...this.pokemons, ...response.results];
                     this.offset += this.limit;
+                    this.empty = false;
+                    if (this.offset > this.limit) {
+                        this.scrollToBottom();
+                    }
                 },
-                error: (err) => {
-                    console.error('API error', err);
-                },
+                error: () => {
+                    this.errorMessage = 'Failed to load Pokémon. Please try again.';
+                    this.loading = false;
+                }
+                ,
             });
     }
-
 
 
     onSearch(): void {
@@ -79,6 +96,7 @@ export class PokemonListComponent implements OnInit {
             error: () => {
                 this.pokemons = [];
                 this.searching = false;
+                this.empty = true;
             },
         });
     }
@@ -92,11 +110,6 @@ export class PokemonListComponent implements OnInit {
     clearSearch(): void {
         this.searchTerm = '';
         this.searching = false;
-
-        this.pokemons = [];
-        this.offset = 0;
-
-        this.loadPokemons();
     }
 
     goToDetails(pokemon: PokemonListItem): void {

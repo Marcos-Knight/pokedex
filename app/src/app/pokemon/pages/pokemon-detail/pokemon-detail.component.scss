@@ -1,0 +1,63 @@
+.detail-container {
+  background: white;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 20px;
+  max-width: 800px;
+}
+
+.back-button {
+  margin: 1rem;
+  background: #ffde00;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.header img {
+  width: 200px;
+}
+
+.info-section {
+  margin-top: 2rem;
+}
+
+.type {
+  background: #3b4cca;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  margin-right: 6px;
+  font-size: 0.8rem;
+}
+
+.stats-section {
+  margin-top: 2rem;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.bar {
+  flex: 1;
+  background: #eee;
+  height: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.fill {
+  background: #cc0000;
+  height: 100%;
+}
