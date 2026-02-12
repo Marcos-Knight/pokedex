@@ -3,27 +3,36 @@ import { PokemonService } from './pokemon.service';
 import { HttpService } from '@nestjs/axios';
 import { of } from 'rxjs';
 import { NotFoundException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+
 
 describe('PokemonService', () => {
   let service: PokemonService;
   let httpService: HttpService;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [
-        PokemonService,
-        {
-          provide: HttpService,
-          useValue: {
-            get: jest.fn(),
-          },
+  const module: TestingModule = await Test.createTestingModule({
+    providers: [
+      PokemonService,
+      {
+        provide: HttpService,
+        useValue: {
+          get: jest.fn(),
         },
-      ],
-    }).compile();
+      },
+      {
+        provide: ConfigService,
+        useValue: {
+          get: jest.fn().mockReturnValue('https://pokeapi.co/api/v2'),
+        },
+      },
+    ],
+  }).compile();
 
-    service = module.get<PokemonService>(PokemonService);
-    httpService = module.get<HttpService>(HttpService);
-  });
+  service = module.get<PokemonService>(PokemonService);
+  httpService = module.get<HttpService>(HttpService);
+});
+
 
   it('should convert height and weight correctly', async () => {
     const mockResponse = {
