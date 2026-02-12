@@ -1,13 +1,18 @@
+h3 {
+  color: white;
+  margin: 2rem;
+}
+
 .detail-container {
   background: white;
-  margin: 2rem auto;
+  margin: 2rem;
   padding: 2rem;
   border-radius: 20px;
   max-width: 800px;
 }
 
 .back-button {
-  margin: 1rem;
+  margin: 2rem;
   background: #ffde00;
   border: none;
   padding: 0.5rem 1rem;
@@ -60,4 +65,32 @@
 .fill {
   background: #cc0000;
   height: 100%;
+}
+
+.loader {
+  margin: 2rem;
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.sound-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #ffde00;
+  transition: transform 0.2s ease;
+}
+
+.sound-btn:hover {
+  transform: scale(1.1);
 }

@@ -5,7 +5,10 @@
   <button *ngIf="searchTerm" (click)="clearSearch()">Clear</button>
 </div>
 
-<div class="loading" *ngIf="loading">Loading Pokédex...</div>
+<div *ngIf="loading">
+  <div class="loader"></div>
+  <p>Loading Pokedex...</p>
+</div>
 
 
 <div class="pokemon-grid" *ngIf="!loading && pokemons.length > 0">
@@ -17,9 +20,12 @@
 
 
 <div *ngIf="!loading && pokemons.length === 0 && !searching">
-  <p>No Pokémon found.</p>
+  <p>No Pokemon found.</p>
   <button (click)="resetList()">Back to list</button>
 </div>
 
 <button *ngIf="!loadingMore && !loading && !empty" (click)="loadPokemons()">Load more</button>
-<div class="loading" *ngIf="loadingMore">Loading More...</div>
+
+<div *ngIf="loadingMore">
+  <div class="loader"></div>
+</div>

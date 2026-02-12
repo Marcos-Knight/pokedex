@@ -36,16 +36,14 @@
     </div>
   </div>
 
-  <section class="cry" *ngIf="pokemon.cry">
-    <h3>Som do Pokémon</h3>
-    <audio controls>
-      <source [src]="pokemon.cry" type="audio/ogg" />
-      Seu navegador não suporta áudio.
-    </audio>
-  </section>
+  <button *ngIf="pokemon.cry" class="sound-btn" (click)="playSound(pokemon.cry)">
+  🔊
+</button>
+
 
 </div>
 
-<ng-template #loading>
-  <p>Loading Pokémon...</p>
+<ng-template  #loading>
+  <div class="loader"></div>
+  <h3>Loading Pokémon...</h3>
 </ng-template>

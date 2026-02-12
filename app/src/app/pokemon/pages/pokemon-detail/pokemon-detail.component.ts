@@ -24,7 +24,7 @@ export class PokemonDetailComponent implements OnInit {
     if (id) {
       this.pokemonService.getPokemonDetails(id).subscribe({
         next: (data) => {
-          
+          console.log(data)
           this.pokemon = data;
         },
       });
@@ -34,4 +34,10 @@ export class PokemonDetailComponent implements OnInit {
   goBack(): void {
     this.router.navigate(['/']);
   }
+
+  playSound(audioUrl?: string) {
+  const audio = new Audio(audioUrl);
+  audio.play();
+}
+
 }

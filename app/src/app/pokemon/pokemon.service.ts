@@ -3,12 +3,14 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PokemonListItem, PokemonDetails } from './models/pokemon.models';
+import { environment } from '../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class PokemonService {
-  private readonly apiUrl = 'http://localhost:3000/api/pokemon';
+  private readonly apiUrl = `${environment.apiUrl}/pokemon`;
 
   constructor(private http: HttpClient) {}
 
@@ -46,7 +48,7 @@ export class PokemonService {
           value: s.value,
         })),
 
-        cry: `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${data.id}.ogg`,
+        cry: data.cry,        
       }))
     );
 }
