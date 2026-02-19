@@ -58,7 +58,7 @@ describe('PokemonService', () => {
 
     const result = await service.findByIdOrName('8');
 
-    expect(result.height).toBe(1);   // se estiver convertendo no backend
+    expect(result.height).toBe(1); 
     expect(result.weight).toBe(22.5);
   });
 
